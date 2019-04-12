@@ -4,7 +4,7 @@
  * Gestion des type d'items - ORM
  * @author Anael
  */
-class typeItem {
+class typeAction {
 
     private $id;
     private $libelle;

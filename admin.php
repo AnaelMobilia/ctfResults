@@ -24,9 +24,9 @@ if (isset($_POST["submitEvt"])) {
 // Chargement de la liste des groupes
 $listeGroupes = loader::chargerGroupes();
 // Tous les événements possibles en admin...
-$listeEvts = loader::chargerTypeItems(false, true);
+$listeEvts = loader::chargerTypeActions(false, true);
 // Les flags...
-$listeFlags = loader::chargerTypeItems(true, false);
+$listeFlags = loader::chargerTypeActions(true, false);
 ?>
 
 <!DOCTYPE html>

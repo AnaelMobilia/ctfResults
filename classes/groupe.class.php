@@ -19,7 +19,7 @@ class groupe {
         $monScore = 0;
 
         // Je vais chercher les infos en BDD - que les éléments à prendre en compte !
-        $req = maBDD::getInstance()->prepare("SELECT * FROM evenement ev, typeitem ty WHERE ev.type = ty.id AND ev.groupe = :groupe AND ev.etat=1");
+        $req = maBDD::getInstance()->prepare("SELECT * FROM evenement ev, typeaction ty WHERE ev.type = ty.id AND ev.groupe = :groupe AND ev.etat=1");
         $req->bindValue(':groupe', $this->getId(), PDO::PARAM_INT);
         $req->execute();
 

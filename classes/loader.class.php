@@ -43,11 +43,11 @@ class loader {
      * Liste de tous les type d'item pour l'administration
      * @param boolean $saisieUser Doit-être saisissable par les utilisateurs (FALSE)
      * @param boolean $saisieAdmin Doit-être saisissable par l'administrateur (FALSE)
-     * @return typeItem[]
+     * @return typeAction[]
      */
-    public static function chargerTypeItems($saisieUser = false, $saisieAdmin = false) {
+    public static function chargerTypeActions($saisieUser = false, $saisieAdmin = false) {
         // Tous les types d'items
-        $req = "SELECT * FROM typeitem WHERE 1=1";
+        $req = "SELECT * FROM typeaction WHERE 1";
         if ($saisieUser) {
             $req .= " AND saisieUser=1";
         }
@@ -62,7 +62,7 @@ class loader {
         // Pour chaque résultat retourné
         foreach ($resultat->fetchAll() as $value) {
             // Nouvel objet
-            $monStub = new typeItem();
+            $monStub = new typeAction();
             $monStub->setId($value->id);
             $monStub->setLibelle($value->libelle);
             $monStub->setValeur($value->valeur);
@@ -81,7 +81,7 @@ class loader {
      * @return evenement[]
      */
     public static function chargerEvenementsGroupe($idGroupe) {
-        $req = maBDD::getInstance()->prepare("SELECT * FROM evenement ev, groupe gr, typeitem ty WHERE ev.tiers = gr.id AND ev.type = ty.id AND ev.groupe = :groupe AND ev.etat=1");
+        $req = maBDD::getInstance()->prepare("SELECT * FROM evenement ev, groupe gr, typeaction ty WHERE ev.tiers = gr.id AND ev.type = ty.id AND ev.groupe = :groupe AND ev.etat=1");
         $req->bindValue(':groupe', $idGroupe, PDO::PARAM_INT);
         $req->execute();
 
@@ -115,7 +115,7 @@ class loader {
      * @return evenement[]
      */
     public static function chargerEvenementsMachine($idMachine) {
-        $req = maBDD::getInstance()->prepare("SELECT * FROM evenement ev, groupe gr, typeitem ty WHERE ev.groupe = gr.id AND ev.type = ty.id AND ev.tiers = :groupe AND ev.etat=1 AND ty.libelle NOT LIKE 'P&eacute;nalit&eacute; - %'");
+        $req = maBDD::getInstance()->prepare("SELECT * FROM evenement ev, groupe gr, typeaction ty WHERE ev.groupe = gr.id AND ev.type = ty.id AND ev.tiers = :groupe AND ev.etat=1 AND ty.libelle NOT LIKE 'P&eacute;nalit&eacute; - %'");
         $req->bindValue(':groupe', $idMachine, PDO::PARAM_INT);
         $req->execute();
 
@@ -197,7 +197,7 @@ class loader {
      * @return int
      */
     public static function getEvenementPenalite($idType) {
-        $req = maBDD::getInstance()->prepare("SELECT * FROM typeitem WHERE libelle = CONCAT('P&eacute;nalit&eacute; - ', (SELECT libelle from typeitem where id = :idType))");
+        $req = maBDD::getInstance()->prepare("SELECT * FROM typeaction WHERE libelle = CONCAT('P&eacute;nalit&eacute; - ', (SELECT libelle from typeaction where id = :idType))");
         $req->bindValue(':idType', $idType, PDO::PARAM_INT);
         $req->execute();
 

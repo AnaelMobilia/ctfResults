@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  ven. 12 avr. 2019 à 21:48
+-- Généré le :  ven. 12 avr. 2019 à 23:49
 -- Version du serveur :  10.1.37-MariaDB
 -- Version de PHP :  7.3.1
 
@@ -101,10 +101,10 @@ INSERT INTO `groupe` (`id`, `urlServeur`, `membres`, `isEnLigne`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `typeitem`
+-- Structure de la table `typeaction`
 --
 
-CREATE TABLE `typeitem` (
+CREATE TABLE `typeaction` (
   `id` int(11) NOT NULL,
   `libelle` text NOT NULL,
   `valeur` int(11) NOT NULL,
@@ -113,10 +113,10 @@ CREATE TABLE `typeitem` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `typeitem`
+-- Déchargement des données de la table `typeaction`
 --
 
-INSERT INTO `typeitem` (`id`, `libelle`, `valeur`, `saisieUser`, `saisieAdmin`) VALUES
+INSERT INTO `typeaction` (`id`, `libelle`, `valeur`, `saisieUser`, `saisieAdmin`) VALUES
 (1, 'Capture du flag /root/flag', 100, 1, 0),
 (2, 'Capture du flag devWeb', 30, 1, 0),
 (3, 'Capture du flag FTP', 30, 1, 0),
@@ -137,12 +137,12 @@ INSERT INTO `typeitem` (`id`, `libelle`, `valeur`, `saisieUser`, `saisieAdmin`) 
 (21, 'Bonus - 10&egrave;me en ligne', 1, 0, 1),
 (22, 'Malus - Mise en ligne tardive', -5, 0, 1),
 (23, 'Faire le K&eacute;vin', -30, 0, 0),
-(24, 'Pénalité - Capture du flag /root/flag', -50, 0, 0),
-(25, 'Pénalité - Capture du flag devWeb', -15, 0, 0),
-(26, 'Pénalité - Capture du flag FTP', -15, 0, 0),
-(27, 'Pénalité - Capture du flag Mercurial', -15, 0, 0),
-(28, 'Pénalité - Capture du flag WordPress', -15, 0, 0),
-(29, 'Pénalité - Capture du flag SQL', -15, 0, 0);
+(24, 'P&eacute;nalit&eacute; - Capture du flag /root/flag', -50, 0, 0),
+(25, 'P&eacute;nalit&eacute; - Capture du flag devWeb', -15, 0, 0),
+(26, 'P&eacute;nalit&eacute; - Capture du flag FTP', -15, 0, 0),
+(27, 'P&eacute;nalit&eacute; - Capture du flag Mercurial', -15, 0, 0),
+(28, 'P&eacute;nalit&eacute; - Capture du flag WordPress', -15, 0, 0),
+(29, 'P&eacute;nalit&eacute; - Capture du flag SQL', -15, 0, 0);
 
 --
 -- Index pour les tables déchargées
@@ -167,9 +167,9 @@ ALTER TABLE `groupe`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `typeitem`
+-- Index pour la table `typeaction`
 --
-ALTER TABLE `typeitem`
+ALTER TABLE `typeaction`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -180,13 +180,13 @@ ALTER TABLE `typeitem`
 -- AUTO_INCREMENT pour la table `evenement`
 --
 ALTER TABLE `evenement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT pour la table `flags`
 --
 ALTER TABLE `flags`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `groupe`
@@ -195,9 +195,9 @@ ALTER TABLE `groupe`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT pour la table `typeitem`
+-- AUTO_INCREMENT pour la table `typeaction`
 --
-ALTER TABLE `typeitem`
+ALTER TABLE `typeaction`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 COMMIT;
 
