@@ -1,17 +1,10 @@
 <?php
 require 'config/config.php';
-
-// Besoin du paramètre groupe en $_GET
-if (!isset($_GET["pass"]) || $_GET["pass"] != _PASS_ADMIN) {
-//    header("Location: index.php");
-//    exit();
-}
-
 // Retour de l'exécution côté SQL
 $etat;
 
 // Gestion de l'envoi du formulaire
-if (isset($_POST["submit"])) {
+if (isset($_POST["submit"]) && checkReCaptacha()) {
     // Vérification du flag
     $etat = loader::verfierFlag($_POST["victime"], $_POST["flagType"], $_POST["flag"]);
     if ($etat) {
@@ -41,6 +34,14 @@ $listeFlags = loader::chargerTypeActions(true, false);
         <link href="css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
+        <script src="https://www.google.com/recaptcha/api.js?render=<?= _RECATCHA_PUBLIC_KEY_ ?>"></script>
+        <script>
+            grecaptcha.ready(function () {
+                grecaptcha.execute('<?= _RECATCHA_PUBLIC_KEY_ ?>', {action: 'homepage'}).then(function (token) {
+                    $("#g-recaptcha-response").val(token);
+                });
+            });
+        </script>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <a class="navbar-brand" href="index.php">CTF - Résultats</a>
         </nav>
@@ -57,7 +58,8 @@ $listeFlags = loader::chargerTypeActions(true, false);
                 <?php endif; ?>
                 <div class="container">
                     <h1 class="display-5">Soumettre un flag</h1>
-                    <form method="POST">
+                    <form method="post">
+                        <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label" for="attaquant">Mon groupe</label>
                             <div class="col-sm-10">
