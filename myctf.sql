@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  ven. 12 avr. 2019 à 21:29
+-- Généré le :  ven. 12 avr. 2019 à 21:48
 -- Version du serveur :  10.1.37-MariaDB
 -- Version de PHP :  7.3.1
 
@@ -137,12 +137,12 @@ INSERT INTO `typeitem` (`id`, `libelle`, `valeur`, `saisieUser`, `saisieAdmin`) 
 (21, 'Bonus - 10&egrave;me en ligne', 1, 0, 1),
 (22, 'Malus - Mise en ligne tardive', -5, 0, 1),
 (23, 'Faire le K&eacute;vin', -30, 0, 0),
-(24, 'Prise de son flag /root/flag', -50, 0, 0),
-(25, 'Prise de son flag devWeb', -15, 0, 0),
-(26, 'Prise de son flag FTP', -15, 0, 0),
-(27, 'Prise de son flag Mercurial', -15, 0, 0),
-(28, 'Prise de son flag WordPress', -15, 0, 0),
-(29, 'Prise de son flag SQL', -15, 0, 0);
+(24, 'Pénalité - Capture du flag /root/flag', -50, 0, 0),
+(25, 'Pénalité - Capture du flag devWeb', -15, 0, 0),
+(26, 'Pénalité - Capture du flag FTP', -15, 0, 0),
+(27, 'Pénalité - Capture du flag Mercurial', -15, 0, 0),
+(28, 'Pénalité - Capture du flag WordPress', -15, 0, 0),
+(29, 'Pénalité - Capture du flag SQL', -15, 0, 0);
 
 --
 -- Index pour les tables déchargées
