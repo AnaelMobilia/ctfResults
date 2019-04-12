@@ -13,7 +13,7 @@ class updater {
     public static function changeStatut($idServeur) {
         $req = maBDD::getInstance()->prepare("UPDATE groupe SET isEnLigne = (isEnLigne + 1)%2 WHERE id = :id");
         $req->bindValue(':id', $idServeur, PDO::PARAM_INT);
-        $req->execute();
+        return $req->execute();
     }
 
     /**
@@ -27,7 +27,7 @@ class updater {
         $req->bindValue(':idGroupe', $idGroupe, PDO::PARAM_INT);
         $req->bindValue(':ip', $_SERVER["REMOTE_ADDR"], PDO::PARAM_STR);
         $req->bindValue(':idGroupe2', $idGroupe, PDO::PARAM_INT);
-        $req->execute();
+        return $req->execute();
     }
 
 }

@@ -7,14 +7,24 @@ if (!isset($_GET["pass"]) || $_GET["pass"] != _PASS_ADMIN) {
     exit();
 }
 
+// Retour de l'exécution côté SQL
+$etat = '';
 
 // Gestion de l'envoi du formulaire
 if (isset($_POST["submitEvt"])) {
     // Evenement sur un serveur
-    updater::enregistrerEvt($_POST["groupe"], $_POST["evenement"]);
+    if (updater::enregistrerEvt($_POST["groupe"], $_POST["evenement"])) {
+        $etat = true;
+    } else {
+        $etat = false;
+    }
 } elseif (isset($_POST["submitEtat"])) {
     // Changement d'état d'un serveur
-    updater::changeStatut($_POST["groupe"]);
+    if (updater::changeStatut($_POST["groupe"])) {
+        $etat = true;
+    } else {
+        $etat = false;
+    }
 }
 
 // Chargement de la liste des groupes
@@ -39,6 +49,14 @@ $listeFlags = loader::chargerTypeItems(true, false);
         <main role="main">
             <!-- Main jumbotron for a primary marketing message or call to action -->
             <div class="jumbotron">
+                <?php if (isset($etat)): ?>
+                    <div class="alert alert-<?= $etat ? "success" : "danger" ?> alert-dismissible fade show" role="alert">
+                        <strong>Requête SQL</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?php endif; ?>
                 <div class="container">
                     <h1 class="display-5">Saisir un événement</h1>
                     <form method="POST">
