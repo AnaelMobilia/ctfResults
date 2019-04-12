@@ -109,13 +109,13 @@ class loader {
     }
 
     /**
-     * Liste de tous les événements d'une machine
+     * Liste de tous les événements d'une machine (sauf les pénalités pour capture de flag)
      * Charge directement le libellé de l'événement et le nom du groupe
      * @param int $idMachine groupe en question
      * @return evenement[]
      */
     public static function chargerEvenementsMachine($idMachine) {
-        $req = maBDD::getInstance()->prepare("SELECT * FROM evenement ev, groupe gr, typeitem ty WHERE ev.groupe = gr.id AND ev.type = ty.id AND ev.tiers = :groupe AND ev.etat=1");
+        $req = maBDD::getInstance()->prepare("SELECT * FROM evenement ev, groupe gr, typeitem ty WHERE ev.groupe = gr.id AND ev.type = ty.id AND ev.tiers = :groupe AND ev.etat=1 AND ty.libelle NOT LIKE 'P&eacute;nalit&eacute; - %'");
         $req->bindValue(':groupe', $idMachine, PDO::PARAM_INT);
         $req->execute();
 
