@@ -31,7 +31,12 @@ class loader {
             $retour->append($monStub);
         }
 
-        return $retour;
+        // Pour destresser Christophe <3
+        $maListe = (array) $retour;
+        shuffle($maListe);
+        $monRetour = new ArrayObject($maListe);
+        
+        return $monRetour;
     }
 
     /**
