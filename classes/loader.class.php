@@ -35,7 +35,7 @@ class loader {
         $maListe = (array) $retour;
         shuffle($maListe);
         $monRetour = new ArrayObject($maListe);
-        
+
         return $monRetour;
     }
 
@@ -170,6 +170,45 @@ class loader {
         $resultat = $req->fetch();
 
         return $resultat->urlServeur;
+    }
+
+    /**
+     * Vérification d'un flag
+     * @param int $idServeur groupe attaqué
+     * @param int $idType type de flag
+     * @param string $flag valeur proposée
+     * @return string
+     */
+    public static function verfierFlag($idServeur, $idType, $flag) {
+        $req = maBDD::getInstance()->prepare("SELECT COUNT(*) as nb FROM flags WHERE groupe = :idGroupe AND type = :idType AND flag = :flag");
+        $req->bindValue(':idGroupe', $idServeur, PDO::PARAM_INT);
+        $req->bindValue(':idType', $idType, PDO::PARAM_INT);
+        $req->bindValue(':flag', $flag, PDO::PARAM_STR);
+        $req->execute();
+
+        $resultat = $req->fetch();
+
+        return $resultat->nb;
+    }
+
+    /**
+     * Id du flag de pénalité
+     * @param int $idType type de flag
+     * @return int
+     */
+    public static function getEvenementPenalite($idType) {
+        $req = maBDD::getInstance()->prepare("SELECT * FROM typeitem WHERE libelle = CONCAT('P&eacute;nalit&eacute; - ', (SELECT libelle from typeitem where id = :idType))");
+        $req->bindValue(':idType', $idType, PDO::PARAM_INT);
+        $req->execute();
+
+        $resultat = $req->fetch();
+
+        // Au cas où...
+        if(is_null($resultat->id)) {
+            exit("Erreur pour trouver la pénalité, merci de contacter l'administrateur (votre flag est valide !)");
+        }
+        
+        return $resultat->id;
     }
 
 }

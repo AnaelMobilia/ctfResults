@@ -18,17 +18,26 @@ class updater {
     }
 
     /**
-     * Enregistrement d'un événement poussé par l'admin
+     * Enregistrement d'un événement
      * @param int $idGroupe id du groupe
      * @param int $idEvt id de l'événement
+     * @param int $idVictime id de la victime (optionnel - uniquement pour les flags)
+     * @param int $resultat OK ? (optionnel - uniqumenet pour les flags)
      * @return bool etat de la requête
      */
-    public static function enregistrerEvt($idGroupe, $idEvt) {
-        $req = maBDD::getInstance()->prepare("INSERT INTO evenement (timestamp, type, etat, groupe, ip, tiers) VALUES (UNIX_TIMESTAMP(), :idEvt, 1, :idGroupe, :ip, :idGroupe2)");
+    public static function enregistrerEvt($idGroupe, $idEvt, $idVictime = false, $resultat = 1) {
+        // Gestion des événements poussés par l'admin
+        if (!$idVictime) {
+            // Il s'agit d'un événément dont la responsabilité incombe au groupe même
+            $idVictime = $idGroupe;
+        }
+
+        $req = maBDD::getInstance()->prepare("INSERT INTO evenement (timestamp, type, etat, groupe, ip, tiers) VALUES (UNIX_TIMESTAMP(), :idEvt, :resultat, :idGroupe, :ip, :idGroupe2)");
         $req->bindValue(':idEvt', $idEvt, PDO::PARAM_INT);
+        $req->bindValue(':resultat', $resultat, PDO::PARAM_INT);
         $req->bindValue(':idGroupe', $idGroupe, PDO::PARAM_INT);
         $req->bindValue(':ip', $_SERVER["REMOTE_ADDR"], PDO::PARAM_STR);
-        $req->bindValue(':idGroupe2', $idGroupe, PDO::PARAM_INT);
+        $req->bindValue(':idGroupe2', $idVictime, PDO::PARAM_INT);
         return $req->execute();
     }
 
