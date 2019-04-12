@@ -8,23 +8,17 @@ if (!isset($_GET["pass"]) || $_GET["pass"] != _PASS_ADMIN) {
 }
 
 // Retour de l'exécution côté SQL
-$etat = '';
+$etat;
 
 // Gestion de l'envoi du formulaire
 if (isset($_POST["submitEvt"])) {
     // Evenement sur un serveur
-    if (updater::enregistrerEvt($_POST["groupe"], $_POST["evenement"])) {
-        $etat = true;
-    } else {
-        $etat = false;
-    }
+    $etat = updater::enregistrerEvt($_POST["groupe"], $_POST["evenement"]);
 } elseif (isset($_POST["submitEtat"])) {
     // Changement d'état d'un serveur
-    if (updater::changeStatut($_POST["groupe"])) {
-        $etat = true;
-    } else {
-        $etat = false;
-    }
+    $etat = updater::changeStatut($_POST["groupe"]);
+} elseif (isset($_POST["submitFlag"])) {
+    $etat = updater::enregistrerFlag($_POST["groupe"], $_POST["flagType"], $_POST["flag"]);
 }
 
 // Chargement de la liste des groupes
@@ -98,6 +92,39 @@ $listeFlags = loader::chargerTypeItems(true, false);
                             </div>
                         </div>
                         <input type="submit" name="submitEtat" class="btn btn-primary" value="Modifer" />
+                    </form> 
+                </div>
+                <hr />
+                <div class="container">
+                    <h1 class="display-5">Enregistrer un flag</h1>
+                    <form method="POST">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="groupe">Groupe</label>
+                            <div class="col-sm-10">
+                                <select id="groupe" name="groupe">
+                                    <?php foreach ($listeGroupes as $unGroupe) : ?>
+                                        <option value="<?= $unGroupe->getId() ?>"><?= $unGroupe->getMembres() ?> (<?= $unGroupe->getUrlServeur() ?>)</option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="flagType">Type de flag</label>
+                            <div class="col-sm-10">
+                                <select id="flagType" name="flagType">
+                                    <?php foreach ($listeFlags as $unFlag) : ?>
+                                        <option value="<?= $unFlag->getId() ?>"><?= $unFlag->getLibelle() ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="flag">Valeur</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="flag" name="flag" />
+                            </div>
+                        </div>
+                        <input type="submit" name="submitFlag" class="btn btn-primary" value="Envoyer" />
                     </form> 
                 </div>
             </div>
