@@ -54,6 +54,8 @@ $listeGroupe = loader::chargerGroupes();
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                    <!-- Pour le calcul des rangs -->
+                    <span class="hide" id="rang"></span>
                 </div>
             </div> <!-- /container -->
         </main>
@@ -68,26 +70,28 @@ $listeGroupe = loader::chargerGroupes();
         <script>
             // Calcul du rang
             $(function () {
-                //Get all total values, sort and remove duplicates
+                // Get all total values, sort
                 let totalList = $(".score")
                         .map(function () {
-                            return $(this).text();
+                            return $(this).text().trim();
                         })
                         .get()
                         .sort(function (a, b) {
-                            return a - b;
-                        })
-                        .reduce(function (a, b) {
-                            if (b != a[0])
-                                a.unshift(b);
-                            return a;
-                        }, []);
+                            return b - a;
+                        });
 
                 //Assign rank
                 totalList.forEach((v, i) => {
+                    // Est-ce qu'on a déjà eu cette valeur ?            
+                    if ($("#rang").val() !== v) {
+                        place = i + 1;
+                        // On met à jour le score actuel
+                        $("#rang").val(v);
+                    }
+                    // Mise à jour de la case classement...
                     $('.score').filter(function () {
-                        return $(this).text() == v;
-                    }).prev().prev().prev().text(i + 1);
+                        return $(this).text().trim() === v;
+                    }).prev().prev().prev().text(place);
                 });
             });
 
