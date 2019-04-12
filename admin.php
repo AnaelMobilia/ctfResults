@@ -21,6 +21,8 @@ if (isset($_POST["submitEvt"])) {
 $listeGroupes = loader::chargerGroupes();
 // Tous les événements possibles en admin...
 $listeEvts = loader::chargerTypeItems(false, true);
+// Les flags...
+$listeFlags = loader::chargerTypeItems(true, false);
 ?>
 
 <!DOCTYPE html>
@@ -40,21 +42,25 @@ $listeEvts = loader::chargerTypeItems(false, true);
                 <div class="container">
                     <h1 class="display-5">Saisir un événement</h1>
                     <form method="POST">
-                        <div class="form-group">
-                            <label for="groupe">Groupe</label>
-                            <select id="groupe" name="groupe">
-                                <?php foreach ($listeGroupes as $unGroupe) : ?>
-                                    <option value="<?= $unGroupe->getId() ?>"><?= $unGroupe->getMembres() ?> (<?= $unGroupe->getUrlServeur() ?>)</option>
-                                <?php endforeach; ?>
-                            </select>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="groupe">Groupe</label>
+                            <div class="col-sm-10">
+                                <select id="groupe" name="groupe">
+                                    <?php foreach ($listeGroupes as $unGroupe) : ?>
+                                        <option value="<?= $unGroupe->getId() ?>"><?= $unGroupe->getMembres() ?> (<?= $unGroupe->getUrlServeur() ?>)</option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="evenement">Evenement</label>
-                            <select name="evenement" name="evenement">
-                                <?php foreach ($listeEvts as $unEvt) : ?>
-                                    <option value="<?= $unEvt->getId() ?>"><?= $unEvt->getLibelle() ?> (<?= $unEvt->getValeur() ?> points)</option>
-                                <?php endforeach; ?>
-                            </select>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="evenement">Evenement</label>
+                            <div class="col-sm-10">
+                                <select name="evenement" name="evenement">
+                                    <?php foreach ($listeEvts as $unEvt) : ?>
+                                        <option value="<?= $unEvt->getId() ?>"><?= $unEvt->getLibelle() ?> (<?= $unEvt->getValeur() ?> points)</option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
                         </div>
                         <input type="submit" name="submitEvt" class="btn btn-primary" value="Envoyer" />
                     </form> 
@@ -63,18 +69,20 @@ $listeEvts = loader::chargerTypeItems(false, true);
                 <div class="container">
                     <h1 class="display-5">Modifier l'état d'un serveur</h1>
                     <form method="POST">
-                        <div class="form-group">
-                            <label for="groupe">Groupe</label>
-                            <select id="groupe" name="groupe">
-                                <?php foreach ($listeGroupes as $unGroupe) : ?>
-                                    <option value="<?= $unGroupe->getId() ?>"><?= $unGroupe->getMembres() ?> (<?= $unGroupe->getUrlServeur() ?>) - <?= $unGroupe->getIsEnligne() ? "En" : "Hors" ?> ligne</option>
-                                <?php endforeach; ?>
-                            </select>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="groupe">Groupe</label>
+                            <div class="col-sm-10">
+                                <select id="groupe" name="groupe">
+                                    <?php foreach ($listeGroupes as $unGroupe) : ?>
+                                        <option value="<?= $unGroupe->getId() ?>"><?= $unGroupe->getMembres() ?> (<?= $unGroupe->getUrlServeur() ?>) - <?= $unGroupe->getIsEnligne() ? "En" : "Hors" ?> ligne</option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
                         </div>
                         <input type="submit" name="submitEtat" class="btn btn-primary" value="Modifer" />
                     </form> 
                 </div>
-            </div> <!-- /container -->
+            </div>
         </main>
         <footer class="text-muted">
             <div class="container">
