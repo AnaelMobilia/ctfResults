@@ -14,7 +14,7 @@
   - That's all folks !
 
 # Ajout de type d'actions
-  - Si c'est un flag : saisieUser = 1, saisieAdmin = 0 __ET__ créer une autre action "P&eacute;nalit&eacute - " + libellé flag en mode saisieUser = 0, saisieAdmin = 0
+  - Si c'est un flag : saisieUser = 1, saisieAdmin = 0 __ET__ créer une autre action ```P&eacute;nalit&eacute; - ``` + libellé flag en mode saisieUser = 0, saisieAdmin = 0
   - Si c'est un bonus / malus : champ saisieUser = 0, saisieAdmin = 1
 
 # BDD
