@@ -28,7 +28,7 @@ if (isset($_POST["submit"])) {
 }
 
 // Chargement de la liste des groupes
-$listeGroupes = loader::chargerGroupes();
+$listeGroupes = loader::chargerGroupes(true);
 // Les flags...
 $listeFlags = loader::chargerTypeActions(true, false);
 ?>

@@ -10,7 +10,7 @@ class loader {
      * Liste de tous les groupes
      * @return groupe[]
      */
-    public static function chargerGroupes() {
+    public static function chargerGroupes($randomChris = false) {
         // Tous les groupes
         $req = "SELECT * FROM groupe";
 
@@ -31,10 +31,15 @@ class loader {
             $retour->append($monStub);
         }
 
-        // Pour destresser Christophe <3
-        $maListe = (array) $retour;
-        shuffle($maListe);
-        $monRetour = new ArrayObject($maListe);
+        if ($randomChris) {
+            // Pour destresser Christophe <3
+            $maListe = (array) $retour;
+            // Randomize du tri de la liste
+            shuffle($maListe);
+            $monRetour = new ArrayObject($maListe);
+        } else {
+            $monRetour = $retour;
+        }
 
         return $monRetour;
     }
@@ -204,10 +209,10 @@ class loader {
         $resultat = $req->fetch();
 
         // Au cas où...
-        if(is_null($resultat->id)) {
+        if (is_null($resultat->id)) {
             exit("Erreur pour trouver la pénalité, merci de contacter l'administrateur (votre flag est valide !)");
         }
-        
+
         return $resultat->id;
     }
 
