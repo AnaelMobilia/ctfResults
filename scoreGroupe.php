@@ -26,12 +26,12 @@ $listeEvts = loader::chargerEvenementsGroupe($_GET["id"]);
             <!-- Main jumbotron for a primary marketing message or call to action -->
             <div class="jumbotron">
                 <div class="container">
-                    <h1 class="display-5">Evenements pour <?= loader::getNomGroupe($_GET["id"]) ?></h1>
+                    <h1 class="display-5">Score de <?= loader::getNomGroupe($_GET["id"]) ?></h1>
                     <table class="table table-hover" id="resultats">
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">Date</th>
-                                <th scope="col">Action de <?= loader::getNomGroupe($_GET["id"]) ?></th>
+                                <th scope="col">Action effectuée</th>
                                 <th scope="col">De</th>
                                 <th scope="col">Valeur</th>
                             </tr>
