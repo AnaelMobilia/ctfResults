@@ -15,6 +15,11 @@ $listeGroupe = loader::chargerGroupes();
     <body>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <a class="navbar-brand" href="#">CTF - Résultats</a>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="soumissionFlag.php">Soumettre un flag</a>
+                </li>
+            </ul>
         </nav>
         <main role="main">
             <!-- Main jumbotron for a primary marketing message or call to action -->
