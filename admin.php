@@ -7,6 +7,16 @@ if (!isset($_GET["pass"]) || $_GET["pass"] != _PASS_ADMIN) {
     exit();
 }
 
+
+// Gestion de l'envoi du formulaire
+if (isset($_POST["submitEvt"])) {
+    // Evenement sur un serveur
+    updater::enregistrerEvt($_POST["groupe"], $_POST["evenement"]);
+} elseif (isset($_POST["submitEtat"])) {
+    // Changement d'état d'un serveur
+    updater::changeStatut($_POST["groupe"]);
+}
+
 // Chargement de la liste des groupes
 $listeGroupes = loader::chargerGroupes();
 // Tous les événements possibles en admin...
