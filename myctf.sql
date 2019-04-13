@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  ven. 12 avr. 2019 à 23:49
+-- Généré le :  sam. 13 avr. 2019 à 19:36
 -- Version du serveur :  10.1.37-MariaDB
 -- Version de PHP :  7.3.1
 
@@ -136,7 +136,7 @@ INSERT INTO `typeaction` (`id`, `libelle`, `valeur`, `saisieUser`, `saisieAdmin`
 (20, 'Bonus - 9&egrave;me en ligne', 2, 0, 1),
 (21, 'Bonus - 10&egrave;me en ligne', 1, 0, 1),
 (22, 'Malus - Mise en ligne tardive', -5, 0, 1),
-(23, 'Faire le K&eacute;vin', -30, 0, 0),
+(23, 'Faire le K&eacute;vin', -30, 0, 1),
 (24, 'P&eacute;nalit&eacute; - Capture du flag /root/flag', -50, 0, 0),
 (25, 'P&eacute;nalit&eacute; - Capture du flag devWeb', -15, 0, 0),
 (26, 'P&eacute;nalit&eacute; - Capture du flag FTP', -15, 0, 0),
