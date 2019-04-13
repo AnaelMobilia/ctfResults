@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  Dim 14 avr. 2019 à 01:38
+-- Généré le :  Dim 14 avr. 2019 à 01:43
 -- Version du serveur :  10.1.37-MariaDB
 -- Version de PHP :  7.3.1
 
@@ -101,6 +101,20 @@ INSERT INTO `groupe` (`id`, `urlServeur`, `membres`, `isEnLigne`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `ping`
+--
+
+CREATE TABLE `ping` (
+  `id` int(11) NOT NULL,
+  `machine_id` int(11) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `dateheure` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `reponse` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `typeaction`
 --
 
@@ -165,6 +179,12 @@ ALTER TABLE `flags`
 -- Index pour la table `groupe`
 --
 ALTER TABLE `groupe`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `ping`
+--
+ALTER TABLE `ping`
   ADD PRIMARY KEY (`id`);
 
 --

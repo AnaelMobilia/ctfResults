@@ -10,7 +10,9 @@
 
 # Configuration
   - Editer le fichier config/config.php
+  - Editer le fichier pyping.py (champs bdd_*)
   - Importer la BDD (les evenements saisis ont eu lieu)
+  - Planifier l'appel de pyping.py toute les heures
   - That's all folks !
 
 # Ajout de type d'actions
