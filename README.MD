@@ -17,6 +17,9 @@
   - Si c'est un flag : saisieUser = 1, saisieAdmin = 0 __ET__ créer une autre action ```P&eacute;nalit&eacute; - ``` + libellé flag en mode saisieUser = 0, saisieAdmin = 0
   - Si c'est un bonus / malus : champ saisieUser = 0, saisieAdmin = 1
 
+# Choisir si un événément doit s'affcher sur la page de la machine
+  - typeaction -> isEvtMAchine = 1 si oui, 0 sinon
+
 # BDD
   - typeaction : tous les types d'actions possibles dans le jeu
   - groupe : liste des groupes en jeu

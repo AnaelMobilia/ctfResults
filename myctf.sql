@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  sam. 13 avr. 2019 à 19:36
+-- Généré le :  Dim 14 avr. 2019 à 01:38
 -- Version du serveur :  10.1.37-MariaDB
 -- Version de PHP :  7.3.1
 
@@ -109,40 +109,41 @@ CREATE TABLE `typeaction` (
   `libelle` text NOT NULL,
   `valeur` int(11) NOT NULL,
   `saisieUser` tinyint(4) NOT NULL,
-  `saisieAdmin` tinyint(4) NOT NULL
+  `saisieAdmin` tinyint(4) NOT NULL,
+  `isEvtMachine` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `typeaction`
 --
 
-INSERT INTO `typeaction` (`id`, `libelle`, `valeur`, `saisieUser`, `saisieAdmin`) VALUES
-(1, 'Capture du flag /root/flag', 100, 1, 0),
-(2, 'Capture du flag devWeb', 30, 1, 0),
-(3, 'Capture du flag FTP', 30, 1, 0),
-(4, 'Capture du flag Mercurial', 30, 1, 0),
-(5, 'Capture du flag WordPress', 30, 1, 0),
-(6, 'Capture du flag SQL', 30, 1, 0),
-(7, 'VM non disponible (supervision)', -1, 0, 1),
-(11, 'R&eacute;initialisation de la VM', -15, 0, 1),
-(12, 'Bonus - 1er en ligne', 10, 0, 1),
-(13, 'Bonus - 2&egrave;me en ligne', 9, 0, 1),
-(14, 'Bonus - 3&egrave;me en ligne', 8, 0, 1),
-(15, 'Bonus - 4&egrave;me en ligne', 7, 0, 1),
-(16, 'Bonus - 5&egrave;me en ligne', 6, 0, 1),
-(17, 'Bonus - 6&egrave;me en ligne', 5, 0, 1),
-(18, 'Bonus - 7&egrave;me en ligne', 4, 0, 1),
-(19, 'Bonus - 8&egrave;me en ligne', 3, 0, 1),
-(20, 'Bonus - 9&egrave;me en ligne', 2, 0, 1),
-(21, 'Bonus - 10&egrave;me en ligne', 1, 0, 1),
-(22, 'Malus - Mise en ligne tardive', -5, 0, 1),
-(23, 'Faire le K&eacute;vin', -30, 0, 1),
-(24, 'P&eacute;nalit&eacute; - Capture du flag /root/flag', -50, 0, 0),
-(25, 'P&eacute;nalit&eacute; - Capture du flag devWeb', -15, 0, 0),
-(26, 'P&eacute;nalit&eacute; - Capture du flag FTP', -15, 0, 0),
-(27, 'P&eacute;nalit&eacute; - Capture du flag Mercurial', -15, 0, 0),
-(28, 'P&eacute;nalit&eacute; - Capture du flag WordPress', -15, 0, 0),
-(29, 'P&eacute;nalit&eacute; - Capture du flag SQL', -15, 0, 0);
+INSERT INTO `typeaction` (`id`, `libelle`, `valeur`, `saisieUser`, `saisieAdmin`, `isEvtMachine`) VALUES
+(1, 'Capture du flag /root/flag', 100, 1, 0, 1),
+(2, 'Capture du flag devWeb', 30, 1, 0, 1),
+(3, 'Capture du flag FTP', 30, 1, 0, 1),
+(4, 'Capture du flag Mercurial', 30, 1, 0, 1),
+(5, 'Capture du flag WordPress', 30, 1, 0, 1),
+(6, 'Capture du flag SQL', 30, 1, 0, 1),
+(7, 'VM non disponible (supervision)', -1, 0, 1, 1),
+(11, 'R&eacute;initialisation de la VM', -15, 0, 1, 1),
+(12, 'Bonus - 1er en ligne', 10, 0, 1, 0),
+(13, 'Bonus - 2&egrave;me en ligne', 9, 0, 1, 0),
+(14, 'Bonus - 3&egrave;me en ligne', 8, 0, 1, 0),
+(15, 'Bonus - 4&egrave;me en ligne', 7, 0, 1, 0),
+(16, 'Bonus - 5&egrave;me en ligne', 6, 0, 1, 0),
+(17, 'Bonus - 6&egrave;me en ligne', 5, 0, 1, 0),
+(18, 'Bonus - 7&egrave;me en ligne', 4, 0, 1, 0),
+(19, 'Bonus - 8&egrave;me en ligne', 3, 0, 1, 0),
+(20, 'Bonus - 9&egrave;me en ligne', 2, 0, 1, 0),
+(21, 'Bonus - 10&egrave;me en ligne', 1, 0, 1, 0),
+(22, 'Malus - Mise en ligne tardive', -5, 0, 1, 1),
+(23, 'Faire le K&eacute;vin', -30, 0, 1, 0),
+(24, 'P&eacute;nalit&eacute; - Capture du flag /root/flag', -50, 0, 0, 0),
+(25, 'P&eacute;nalit&eacute; - Capture du flag devWeb', -15, 0, 0, 0),
+(26, 'P&eacute;nalit&eacute; - Capture du flag FTP', -15, 0, 0, 0),
+(27, 'P&eacute;nalit&eacute; - Capture du flag Mercurial', -15, 0, 0, 0),
+(28, 'P&eacute;nalit&eacute; - Capture du flag WordPress', -15, 0, 0, 0),
+(29, 'P&eacute;nalit&eacute; - Capture du flag SQL', -15, 0, 0, 0);
 
 --
 -- Index pour les tables déchargées

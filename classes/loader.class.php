@@ -120,7 +120,7 @@ class loader {
      * @return evenement[]
      */
     public static function chargerEvenementsMachine($idMachine) {
-        $req = maBDD::getInstance()->prepare("SELECT * FROM evenement ev, groupe gr, typeaction ty WHERE ev.groupe = gr.id AND ev.type = ty.id AND ev.tiers = :groupe AND ev.etat=1 AND ty.libelle NOT LIKE 'P&eacute;nalit&eacute; - %'");
+        $req = maBDD::getInstance()->prepare("SELECT * FROM evenement ev, groupe gr, typeaction ty WHERE ev.groupe = gr.id AND ev.type = ty.id AND ev.tiers = :groupe AND ev.etat=1 AND ty.isEvtMachine = 1");
         $req->bindValue(':groupe', $idMachine, PDO::PARAM_INT);
         $req->execute();
 
