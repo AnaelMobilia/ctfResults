@@ -39,7 +39,7 @@ $listeEvts = loader::chargerEvenementsMachine($_GET["id"]);
                         <tbody>
                             <?php foreach ($listeEvts as $unEvt) : ?>
                                 <tr>
-                                    <td><?= date('d/m/Y H:m', $unEvt->getTimestamp()) ?></td>
+                                    <td><?= date('d/m/Y H:i', $unEvt->getTimestamp()) ?></td>
                                     <td><?= $unEvt->getNom() ?></td>
                                     <td><?= $unEvt->getNomGroupe() ?></td>
                                     <td><?= $unEvt->getValeur() ?></td>
