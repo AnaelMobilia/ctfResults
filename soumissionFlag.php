@@ -6,7 +6,7 @@ $etat;
 // Gestion de l'envoi du formulaire
 if (isset($_POST["submit"]) && checkReCaptacha()) {
     // Vérification du flag
-    $etat = loader::verfierFlag($_POST["victime"], $_POST["flagType"], $_POST["flag"]);
+    $etat = loader::verfierFlag($_POST["victime"], $_POST["attaquant"], $_POST["flagType"], $_POST["flag"]);
     if ($etat) {
         // Si ok, enregistrement de sa capture (en positif)
         updater::enregistrerEvt($_POST["attaquant"], $_POST["flagType"], $_POST["victime"]);
@@ -49,12 +49,23 @@ $listeFlags = loader::chargerTypeActions(true, false);
             <!-- Main jumbotron for a primary marketing message or call to action -->
             <div class="jumbotron">
                 <?php if (isset($etat)): ?>
-                    <div class="alert alert-<?= $etat ? "success" : "danger" ?> alert-dismissible fade show" role="alert">
-                        <strong><?= $etat ? "YEEEESSSS !" : "EPIC FAIL l00s3r..." ?></strong>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+                    <?php if ($etat != -1): ?>
+                        <div class="alert alert-<?= $etat ? "success" : "danger" ?> alert-dismissible fade show" role="alert">
+                            <strong><?= $etat ? "YEEEESSSS !" : "EPIC FAIL l00s3r..." ?></strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    <?php else: ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Mauvais comportment détecté !</strong>
+                            <br />
+                            Soit vous indiquez attaquer votre propre serveur, soit vous avez déjà obtenu ce flag !
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    <?php endif; ?>
                 <?php endif; ?>
                 <div class="container">
                     <h1 class="display-5">Soumettre un flag</h1>

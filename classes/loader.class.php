@@ -178,15 +178,33 @@ class loader {
     }
 
     /**
-     * Vérification d'un flag
-     * @param int $idServeur groupe attaqué
+     * Vérification d'un flag (vérification de non déjà attribution & pas d'auto saisie)
+     * @param int $idVictime groupe attaqué
+     * @param int $idAttaquant groupe qui attaque
      * @param int $idType type de flag
      * @param string $flag valeur proposée
-     * @return string
+     * @return -1 si erreur, 0 si KO, > 0 si ok
      */
-    public static function verfierFlag($idServeur, $idType, $flag) {
+    public static function verfierFlag($idVictime, $idAttaquant, $idType, $flag) {
+        // Cas d'auto-attribution
+        if ($idAttaquant === $idVictime) {
+            return -1;
+        }
+
+        // Cas de resoumission après attribution
+        $req = maBDD::getInstance()->prepare("SELECT COUNT(*) as nb FROM evenement WHERE etat = 1 AND groupe = :idGroupe AND type = :idType AND tiers = :idTiers");
+        $req->bindValue(':idTiers', $idVictime, PDO::PARAM_INT);
+        $req->bindValue(':idType', $idType, PDO::PARAM_INT);
+        $req->bindValue(':idGroupe', $idAttaquant, PDO::PARAM_INT);
+        $req->execute();
+        $resultat = $req->fetch();
+        if ($resultat->nb > 0) {
+            return -1;
+        }
+
+
         $req = maBDD::getInstance()->prepare("SELECT COUNT(*) as nb FROM flags WHERE groupe = :idGroupe AND type = :idType AND flag = :flag");
-        $req->bindValue(':idGroupe', $idServeur, PDO::PARAM_INT);
+        $req->bindValue(':idGroupe', $idVictime, PDO::PARAM_INT);
         $req->bindValue(':idType', $idType, PDO::PARAM_INT);
         $req->bindValue(':flag', $flag, PDO::PARAM_STR);
         $req->execute();
