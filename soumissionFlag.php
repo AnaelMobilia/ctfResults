@@ -7,7 +7,7 @@ $etat;
 if (isset($_POST["submit"]) && checkReCaptacha()) {
     // Vérification du flag
     $etat = loader::verfierFlag($_POST["victime"], $_POST["attaquant"], $_POST["flagType"], $_POST["flag"]);
-    if ($etat) {
+    if ($etat == 1) {
         // Si ok, enregistrement de sa capture (en positif)
         updater::enregistrerEvt($_POST["attaquant"], $_POST["flagType"], $_POST["victime"]);
         // ... et enregistrement de sa capture (en négatif)
