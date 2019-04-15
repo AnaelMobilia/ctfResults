@@ -178,7 +178,7 @@ class loader {
     }
 
     /**
-     * Vérification d'un flag (vérification de non déjà attribution & pas d'auto saisie)
+     * Vérification d'un flag (vérification de non déjà attribution & pas d'auto saisie & attaquant est en ligne)
      * @param int $idVictime groupe attaqué
      * @param int $idAttaquant groupe qui attaque
      * @param int $idType type de flag
@@ -190,6 +190,16 @@ class loader {
         if ($idAttaquant === $idVictime) {
             return -1;
         }
+        
+        // Cas de soumission d'un flag alors qu'on est soi même hors-ligne
+        $req = maBDD::getInstance()->prepare("SELECT isEnLigne FROM groupe WHERE id = :idAttaquant");
+        $req->bindValue(':idAttaquant', $idAttaquant, PDO::PARAM_INT);
+        $req->execute();
+        $resultat = $req->fetch();
+        if ($resultat->isEnLigne == 0) {
+            return -1;
+        }
+        
 
         // Cas de resoumission après attribution
         $req = maBDD::getInstance()->prepare("SELECT COUNT(*) as nb FROM evenement WHERE etat = 1 AND groupe = :idGroupe AND type = :idType AND tiers = :idTiers");

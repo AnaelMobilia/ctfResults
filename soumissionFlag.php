@@ -60,7 +60,7 @@ $listeFlags = loader::chargerTypeActions(true, false);
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <strong>Mauvais comportment détecté !</strong>
                             <br />
-                            Soit vous indiquez attaquer votre propre serveur, soit vous avez déjà obtenu ce flag !
+                            Soit vous indiquez attaquer votre propre serveur, soit vous avez déjà obtenu ce flag, soit vous n'êtes pas encore en ligne !
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
