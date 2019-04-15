@@ -12,7 +12,7 @@ define('_PATH_', __DIR__ . '/../');
 // Mot de passe d'administration
 define('_PASS_ADMIN', 'password');
 
-// Recaptcha
+// Recaptcha v3
 define('_RECATCHA_PUBLIC_KEY_', '');
 define('_RECATCHA_PRIVATE_KEY_', '');
 

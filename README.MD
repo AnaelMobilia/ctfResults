@@ -9,6 +9,7 @@
   - Enregistrement de toutes les soumissions avec un état ok / échec
 
 # Configuration
+  - Renommer le fichier config/config_sample.php en config/config.php
   - Editer le fichier config/config.php
   - Editer le fichier pyping.py (champs bdd_*)
   - Editer le fichier pyftp.py (champs user et password + bdd_*)
