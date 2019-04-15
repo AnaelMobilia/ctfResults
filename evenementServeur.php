@@ -33,7 +33,6 @@ $listeEvts = loader::chargerEvenementsMachine($_GET["id"]);
                                 <th scope="col">Date</th>
                                 <th scope="col">Evénement</th>
                                 <th scope="col">Par</th>
-                                <th scope="col">Valeur</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,7 +41,6 @@ $listeEvts = loader::chargerEvenementsMachine($_GET["id"]);
                                     <td><?= date('d/m/Y H:i', $unEvt->getTimestamp()) ?></td>
                                     <td><?= $unEvt->getNom() ?></td>
                                     <td><?= $unEvt->getNomGroupe() ?></td>
-                                    <td><?= $unEvt->getValeur() ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
